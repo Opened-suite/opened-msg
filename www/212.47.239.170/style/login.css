@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#formbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    width: 75vw;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 2px solid var(--mixed-dark-color-1);
+    background-color: var(--surface-dark-color-3);
+    justify-content: space-evenly;
+    font-size: 2rem;
+    font-weight: bolder;
+
+}
+
+#formbox div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 100;
+    text-align: center;
+}
+
+#formbox div input {
+    font-weight: bolder;
+}
+
+
+#formbox div input[type=email],
+#formbox div input[type=password],
+#formbox div input[type=text] {
+    border: solid 2px black;
+    width: 50%;
+    padding: 1vmin;
+    font-size: 2vmin;
+    border-radius: 5px;
+    text-align: center;
+    background-color: var(--surface-dark-color-2);
+    outline: none;
+}
+
+#formbox div input[type=email]:focus,
+#formbox div input[type=password]:focus,
+#formbox div input[type=text]:focus {
+    background-color: var(--surface-dark-color-1);
+}
+
+#formbox input[type=submit] {
+    padding: 5px;
+    height: 5vh;
+    width: 50%;
+    border-radius: 10px;
+    border: 2px solid var(--mixed-dark-color-3);
+    background-color: var(--surface-dark-color-1);
+    cursor: pointer
+}
+.link-register {
+    font-size: 2vmin;
+}
+#passwordStrength {
+    font-size: 5vmin;
+}

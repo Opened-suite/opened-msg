@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary-dark-color-1: #10111A;
+    --primary-dark-color-2: #212334;
+    --primary-dark-color-3: #171725;
+    --surface-dark-color-1: #4d4d4d;
+    --surface-dark-color-2: #3c3c3c;
+    --surface-dark-color-3: #1e1e1e;
+    --mixed-dark-color-1: #495057;
+    --mixed-dark-color-2: #343a40;
+    --mixed-dark-color-3: #212529;
+    --text-dark-color-1: #EFEFEF;
+    --text-dark-color-2: #CCCCCC;
+    --link-dark-color-1: #a688fa;
+    --link-dark-color-2: #000;
+    --error-dark-color: #FF6347;
+    --primary-light-color-1: #a688fa;
+    --primary-light-color-2: #ba9ffb;
+    --primary-light-color-3: #a688fa;
+    --surface-light-color-1: #F5F5F5;
+    --surface-light-color-2: #717171;
+    --surface-light-color-3: #8b8b8b;
+    --mixed-light-color-1: #76737e;
+    --mixed-light-color-2: #908d96;
+    --mixed-light-color-3: #a3a0a8; 
+    --text-light-color-1: #333333;
+    --text-light-color-2: #555555;
+    --link-light-color-1: #0077B5;
+    --link-light-color-2: #FFA500;
+    --error-light-color: #FF0000;
+
+    --msg-color-bg-1: #5131DB;
+    --msg-color-bg-2: #7E5CE2;
+    --msg-color-bg-3: #E50000;
+}
+
+@keyframes selection {
+    from {
+       text-decoration: underline var(--text-dark-color-1); 
+    }
+    to {
+        text-decoration: underline var(--text-dark-color-1);
+    }
+}
+
+a {
+    color: var(--link-dark-color-1);
+    text-decoration: none;
+}
+
+a:active {
+    color: var(--link-dark-color-2);
+}
+
+* {
+    font-family: Poppins;
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    background-color: var(--primary-dark-color-1);
+    color: var(--text-dark-color-1);
+    width: 100vw;
+    height: 100vh;
+    font-size: 3vmin;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    width: 70vw;
+    height: 10%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: var(--surface-dark-color-1);
+    position: fixed;
+    top:0;
+    left:0;
+}
+
+#navbar a{
+    font-size: 60%;
+    text-decoration: none;
+    color: var(--text-dark-color-1);
+}
+
+#navbar a:hover {
+    animation: selection 1s forwards;
+}
+
+.hidden {
+    display: none;
+}
