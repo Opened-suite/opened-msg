@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style/welcome.css">
         <script src="scripts/script.js" defer></script>
-        <title>Bienvenue sur PaloMSG</title>
+        <title>Bienvenue sur OpenedMsg</title>
     </head>
     <body>
     <?php
@@ -13,7 +13,7 @@
     ?>
     <div id="welcome">
             <div>
-                <p>Bienvenue sur PaloMSG! Veuillez créer un compte pour commencer à chatter avec vos amis!</p>
+                <p>Bienvenue sur OpenedMsg! Veuillez créer un compte pour commencer à chatter avec vos amis!</p>
                 <a href="form/v1/inscription/" class="button">Créer un compte</a>
             </div>
         </div>
