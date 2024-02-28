@@ -1,15 +1,8 @@
-#sending input[type="submit"] {
-    background-image: url("https://img.icons8.com/fluency/30/sent.png");
-    background-size: contain;
-    width: 5vmin;
-    height: 5vmin;
-    border-radius: 100%;
-    border: 1px solid var(--mixed-dark-color-1);
-    cursor: pointer;
-}
+
 
 body {
     overflow: hidden;
+
 }
 
 form {
@@ -20,27 +13,40 @@ form {
     
 }
 
-#sending input[type="text"] {
-    width: calc(100% - 7vmin);
-    height: 5vmin;
-    background-color: gray;
-    border-radius: 15px;
-}
+
 
 body {
     display: flex;
+    background-color: var(--primary-dark-color-1);
+
 }
 
 #sending {
     position: fixed;
     bottom: 0px;
+    width: 60%;
+    
     z-index: 1000;
+    color: #fff;
+    background-color: var(--primary-dark-color-1);
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+.mb-3 {
+    background-color: var(--primary-dark-color-1);
+
+}
+input {
+    color: #fff;
 }
 
 #discussion {
     position: relative;
     height: 94vh;
     width: 80vw;
+    background-color: var(--primary-dark-color-1);
+
 }
 
 .other {
@@ -146,7 +152,7 @@ body {
     
     right: 10%;
     font-size: 30%;
-    color: var(--text-dark-collor-1);
+    color: var(--text-dark-color-1);
 }
 .msg {
     border-top-left-radius: 50px;
@@ -161,23 +167,8 @@ body {
     padding-bottom: 5%;
     border-bottom: 1px solid #fff;
 }
-.contact .header .title {
-    font-size: 70%;
-    text-align: center;
-}
-.contact .header .logo {
-    font-size: 50%;
-}
-.contact .header .search input[type="text"] {
-    border: 1px solid var(--text-dark-color-1);
-    background: var(--primary-dark-color-3);
-    width: 60%;
-    border-radius: 50px;
-    color: #fff;
-    
-}
-.contact .header .search img {
-    margin-bottom: -10px !important;
-    
-}
+
+
+
+
 

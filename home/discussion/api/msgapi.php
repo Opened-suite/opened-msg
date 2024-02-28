@@ -1,6 +1,6 @@
 
 <?php
-include_once("../../config/config_db.php");
+include_once("../../../config/config_db.php");
 $table = $_GET["table"];
 
 // Récupération des données

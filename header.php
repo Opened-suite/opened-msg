@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["pseudo"]) && $_SESSION["token"]) {
+if (isset($_SESSION["pseudo"]) && isset($_SESSION["token"])) {
     $text_pseudo = $_SESSION["pseudo"];
 } else {
     $text_pseudo = "Se Connecter";

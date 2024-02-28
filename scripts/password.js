@@ -21,12 +21,12 @@ let passwordField = document.querySelector(`input[type="password"]`)
 passwordField.addEventListener("input", () => {
     accountValidationButton = document.querySelector("#passwordSend")
     let strength = passwordStrength(passwordField.value)
-    if(strength <= 2) {
+    if(strength <= 1) {
         passwordText.style.color = "red"
         //accountValidationButton.disabled = "true"
         accountValidationButton.removeAttribute("disabled")
         accountValidationButton.style.cursor = "not-allowed"
-    } else if(strength > 2 && strength <= 4) {
+    } else if(strength > 1 && strength <= 3) {
         passwordText.style.color = "yellow"
         accountValidationButton.removeAttribute("disabled")
         accountValidationButton.style.cursor = "pointer"
