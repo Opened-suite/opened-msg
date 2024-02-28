@@ -14,9 +14,13 @@ Table des matières
 
 * Installez ce repositorie github avec la commande : `git@github.com:Opened-suite/opened-msg.git`
 
-* Executez le fichier : `config.sql`
 
-* Configurez le fichier : `config/config_db.php`
+
+* Executez le fichier : `config.sql`
+> [!IMPORTANT]
+> Executez bien le fichier, sinon toute votre installation n'aura servi à rien.
+
+* Configurez le fichier : `config.json`
 
 * Et voilà, 
 Nous esperons que vous allez bien profiter du service 
@@ -30,8 +34,8 @@ Nous esperons que vous allez bien profiter du service
 `#EDE0D4`  
 `#E6CCB2`  
 `#DDB892`  
-`#B08968` 
-`#7F5539` 
+`#B08968`  
+`#7F5539`  
 `#9C6644`  
 
 

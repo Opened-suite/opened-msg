@@ -1,4 +1,20 @@
 <?php
-$config = json_decode(file_get_contents("../", "config.json"), true);
-echo $config["nom"];
+$config = json_decode(file_get_contents("../config.json"), true);
+
+
+// Get First Route
+$general = $config["general"];
+$db = $config["db"];
+
+// Get Second Route
+
+
+// General route
+$wname = $general["name"];
+$logopath = $general["logopath"];
+
+
+// Db route 
+$user_db = $db["user"];
+$password_db = $db["password"];
 ?>
