@@ -1,6 +1,5 @@
 <?php
     include_once('/config/config_json.php');
-    echo "<script>alert(".$wname.");</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style/welcome.css">
         <script src="scripts/script.js" defer></script>
-        <title>Bienvenue sur  <?php echo $wname;?></title>
+        <title>Bienvenue sur  <?=$name;?></title>
     </head>
     <body>
     <?php
@@ -17,7 +16,7 @@
     ?>
     <div id="welcome">
             <div>
-                <p>Bienvenue sur <?php echo $wname;?> Veuillez créer un compte pour commencer à chatter avec vos amis!</p>
+                <p>Bienvenue sur <?= $name;?> Veuillez créer un compte pour commencer à chatter avec vos amis!</p>
                 <a href="form/v1/inscription/" class="button">Créer un compte</a>
             </div>
         </div>

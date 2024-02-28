@@ -10,7 +10,7 @@ $db = $config["db"];
 
 
 // General route
-$wname = $general["name"];
+$name = $general["name"];
 $logopath = $general["logopath"];
 
 
