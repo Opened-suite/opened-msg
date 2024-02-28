@@ -25,12 +25,12 @@ Nous esperons que vous allez bien profiter du service
 ## Comment changer de thème ?
 
 * La palette par défault est celle-ci :
-`
-#EDE0D4  
-#E6CCB2  
-#DDB892  
-#B08968  
-#7F5539  
+
+`#EDE0D4`  
+`#E6CCB2` 
+`#DDB892`  
+`#B08968`  
+`#7F5539`  
 #9C6644  
 `
 
