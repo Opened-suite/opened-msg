@@ -1,15 +1,15 @@
-# Palo Message 
+# Opened Message 
 Le nouvel outil de messagerie instantané opensource basé sur du php pure, js pure, css pure.
 
 *******
 Table des matières  
- 1. Comment installer *PaloMessage*?
+ 1. Comment installer *OpenedMessage*?
  2. Comment changer de thème ?
 
 
 *******
 
-## Comment installer *PaloMessage*
+## Comment installer *OpenedMessage*
 
 * Installez ce repositorie github avec la commande : `git@github.com:Opened-suite/opened-msg.git`
 
