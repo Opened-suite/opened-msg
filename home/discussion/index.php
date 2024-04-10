@@ -97,7 +97,7 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
         </div>
         <div id="discussion">
 
-<iframe src="msg.php?table=<?=$table?>" frameborder="0" width="100%" height="100%" id="msgframe"></iframe>
+<iframe src="msg.php?table=<?=$table?>" frameborder="0" width="100%" height="100%" id="msgframe" ></iframe>
 <span class="input-group mb-3">
     <form action="send_msg.php" method="post" id="sending">
         <input type="text" class="form-control bg-dark text-light" placeholder="Nom d'utilisateur du destinataire" aria-label="Nom d'utilisateur du destinataire" aria-describedby="button-addon2" name="message">

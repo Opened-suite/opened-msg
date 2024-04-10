@@ -1,12 +1,13 @@
-
-
-body {
-    overflow: hidden;
-
+#msgframe {
+    position: absolute;
+    width: 90%;
+    top: 0;
 }
 
+
+
 form {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,13 +19,14 @@ form {
 body {
     display: flex;
     background-color: var(--primary-dark-color-1);
+    overflow: hidden;
 
 }
 
 #sending {
     position: fixed;
     bottom: 0px;
-    width: 60%;
+    width: 80%;
     
     z-index: 1000;
     color: #fff;
@@ -37,15 +39,14 @@ body {
     background-color: var(--primary-dark-color-1);
 
 }
-input {
-    color: #fff;
-}
+
 
 #discussion {
     position: relative;
-    height: 94vh;
-    width: 80vw;
+    height: 100%;
+    width: 80%;
     background-color: var(--primary-dark-color-1);
+    
 
 }
 
@@ -115,7 +116,7 @@ input {
 
 #messages {
     height: 100%;
-    width: 80vw;
+    width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -168,6 +169,21 @@ input {
     border-bottom: 1px solid #fff;
 }
 
+.input-group {
+    width: 100% !important; 
+}
+@media (min-width: 320px) and (max-width: 1024px) {
+    #contacts {
+        display: none !important;
+        width: 0%;
+
+    }
+    #discution {
+        width: 100% !important;
+        left: 0;
+        right: 0;
+    }
+}
 
 
 

@@ -1,5 +1,5 @@
 <?php
-    include_once('/config/config_json.php');
+    include_once('config/config_json.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,7 @@
         <title>Bienvenue sur  <?=$name;?></title>
     </head>
     <body>
+
     <?php
         include("header.php")
     ?>

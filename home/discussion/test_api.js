@@ -18,5 +18,5 @@ setInterval(() => {
         .catch(function(error) {
             console.error("Erreur :", error);
         });
-}, 1000);
+}, 100);
 

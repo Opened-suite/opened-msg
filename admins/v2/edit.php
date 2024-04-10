@@ -9,7 +9,7 @@ if (!isset($_SESSION["pseudo"]) && $_SESSION["token"]) {
     $ip = $_SESSION["ip"];
 }
 require_once("../../config/config_db.php");
-$id = $_GET["id"];
+$id = htmlspecialchars($_GET["id"]);
 try {
     $req = $bdd->prepare("SELECT * FROM users WHERE id =".$id);
     $req->execute();
@@ -51,6 +51,12 @@ try {
         echo '<td><input type="text" value="' . $data["email"] . '" name="email"/> </td>';
         echo '<td><input type="text" value="' . $data["ip"] . '" name="ip"/> </td>';
         echo '<td><input type="text" value="' . $data["grade"] . '" name="grade"/> </td>';
+        echo '<input type="hidden" name="cur_pseudo" value="' . $data["pseudo"] . '">';
+        echo '<input type="hidden" name="cur_mdp" value="' . $data["password"] . '">';
+        echo '<input type="hidden" name="cur_email" value="' . $data["email"] . '">';
+        echo '<input type="hidden" name="cur_ip" value="' . $data["ip"] . '">';
+        echo '<input type="hidden" name="cur_grade" value="' . $data["grade"] . '">';
+        
 
         
         
