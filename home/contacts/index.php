@@ -1,5 +1,7 @@
 <?php
 session_start();
+include_once ("../../config/config_db.php");
+session_start();
 if (!isset($_SESSION["pseudo"]) && $_SESSION["token"]) {
     header("location: /");
 } else {
@@ -32,50 +34,60 @@ if (!isset($_SESSION["pseudo"]) && $_SESSION["token"]) {
         <div class="recentContacts">
             <?php
 
-            try {
-                require_once("../../config/config_db.php");
+try {  
+    $query_table_schema = "SELECT * FROM schema_table WHERE usr1 = '$pseudo' OR usr2 = '$pseudo'";
+    $stmt_table_schema = $bdd2->prepare($query_table_schema);
+    $stmt_table_schema->execute();
+    $result_table = $stmt_table_schema->fetchAll(PDO::FETCH_ASSOC);
 
-                // Requête pour récupérer les noms des tables
-                $query_already_contacted = "SHOW TABLES";
-                $stmt_alr_contacted = $bdd2->prepare($query_already_contacted);
-                $stmt_alr_contacted->execute();
-                
-                // Parcours des résultats
-                while ($row = $stmt_alr_contacted->fetch(PDO::FETCH_ASSOC)) {
-                    $tableName = $row['Tables_in_msg'];
-                    
+    foreach($result_table as $table_schema) {
+        $usr1 = $table_schema['usr1'];
+        $usr2 = $table_schema['usr2'];
+        $date = $table_schema['date'];
+        $tableName = $table_schema['tablename'];
+        if ($usr1 == $pseudo) {
+            $usr = $usr2;
+        } else {
+            $usr = $usr1;
+        }
 
-                    // Vérification si le nom de la table contient "jerem"
-                    if (strpos($tableName, $pseudo) !== false or strpos($pseudo, $tableName) !== false) {
-                        echo '<a href="../index.php?table=' . $tableName . '"><div class="box-contact">
-                            <span class="logo"><img width="50" height="50" src="https://img.icons8.com/color/50/user-male-circle--v1.png" alt="user-male-circle--v1"/></span>
-                            <span class="nom">' . $tableName . '</span>
-                            </div></a>';
-                    }
-                }
-            } catch (PDOException $e) {
-                echo "Erreur : " . $e->getMessage();
-            }
+        echo '<a href="../discussion/index.php?table='.$tableName.'"><div class="box-contact">
+        <span class="logo"><img width="50" height="50" src="https://img.icons8.com/color/50/user-male-circle--v1.png" alt="user-male-circle--v1"/></span>
+            <span class="nom">' . $usr . '</span>
+        </div></a>
+        ';
+            
+        }
+        
+        
+
+    
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+}
+
             ?>
         </div>
         <div class="title">--------- Contacts ---------</div>
             <div class="newContacts">
                 <?php
-                    $query_never_contacted = "SELECT contacts FROM contacts WHERE pseudo = '$pseudo'";
-                    $stmt_nvr_contacted = $bdd->prepare($query_never_contacted);
-                    $stmt_nvr_contacted->execute();
-                    $result_nvr_contacted = $stmt_nvr_contacted->fetch(PDO::FETCH_ASSOC);
-                    if ($result_nvr_contacted) {
-                        $contacts = explode(";", $result_nvr_contacted['contacts']);
+                    $query_contacts = "SELECT contacts FROM contacts WHERE pseudo = '$pseudo'";
+                    $stmt_contacts = $bdd->prepare($query_contacts);
+                    $stmt_contacts->execute();
+                    $result_contacts = $stmt_contacts->fetch(PDO::FETCH_ASSOC);
+                    if ($result_contacts) {
+                        $contacts = explode(";", $result_contacts['contacts']);
                         foreach ($contacts as $contact) {
                             $contact = trim($contact);
-                            if(!empty($contact)) {
+                            
+                            if(!empty($contact) && $contact != $pseudo && $contact != $usr) {
                                 $lien_create_discution = "/home/discussion/new/index.php?pseudo=" . $contact;
                                 echo '<a href="' . $lien_create_discution . '" ><div class="box-contact">
                                 <span class="logo"><img width="50" height="50" src="https://img.icons8.com/color/50/user-male-circle--v1.png" alt="user-male-circle--v1"/></span>
                                     <span class="nom">' . $contact . '</span>
                                     </div></a>';
                                 }
+                            
                             }
                         } else {
                         echo "Aucun résultat trouvé pour le pseudo '$pseudo'.";

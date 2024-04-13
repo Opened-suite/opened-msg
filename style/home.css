@@ -1,6 +1,6 @@
 #msgframe {
     position: absolute;
-    width: 90%;
+    width: 100%;
     top: 0;
 }
 
@@ -20,6 +20,7 @@ body {
     display: flex;
     background-color: var(--primary-dark-color-1);
     overflow: hidden;
+    padding: 0 !important;
 
 }
 
@@ -143,6 +144,15 @@ body {
     width: 100%;
     z-index: -1;
 }
+.box-contact:hover {
+    background: var(--primary-dark-color-3);
+    cursor: pointer;
+}
+.box-contact .nom {
+    margin-left: 10%;
+    color: #fff;
+    text-decoration: none;
+}
 .box-contact .logo {
     margin-left: 10%;
 }
@@ -184,7 +194,66 @@ body {
         right: 0;
     }
 }
+nav.discnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10%;
+    z-index: 9999;
+    border-bottom: 1px solid #fff;
+    background: var(--primary-dark-color-3);
+    border-bottom: 1px solid #fff;
+    width: 100%;
+}
 
+nav.discnav .usr {
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-bottom: 2px solid var(--primary-dark-color-3);
+    border-radius: 50px;
+    transition: 0.5s;
+}
+nav.discnav .usr:hover {
+    background: var(--primary-dark-color-2);
+    color: var(--text-dark-color-1);
+    border-bottom: 2px solid var(--primary-dark-color-3);
+    border-radius: 50px;
+}
+nav.discnav .tools {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10%;
+    margin-left: 10%;
+
+}
+nav.discnav .tools div {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+nav.discnav .info {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
 
 
 

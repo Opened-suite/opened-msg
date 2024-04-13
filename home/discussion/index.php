@@ -32,7 +32,7 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/style/home.css">
@@ -57,35 +57,34 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
                 </nav>
                 <div class="newContacts">
                     <?php
-                        try {
-                            
-                            
+                        try {  
+                            $query_table_schema = "SELECT * FROM schema_table WHERE usr1 = '$pseudo' OR usr2 = '$pseudo'";
+                            $stmt_table_schema = $bdd2->prepare($query_table_schema);
+                            $stmt_table_schema->execute();
+                            $result_table = $stmt_table_schema->fetchAll(PDO::FETCH_ASSOC);
 
-                            // Requête pour récupérer les noms des tables
-                            $query_already_contacted = "SHOW TABLES";
-                            $stmt_alr_contacted = $bdd2->prepare($query_already_contacted);
-                            $stmt_alr_contacted->execute();
-                            $result = $stmt_alr_contacted->fetchAll(PDO::FETCH_ASSOC);
-                            // Parcours des résultats
-                            
-                            foreach($result as $row) {
-                                $tableName = $row['Tables_in_msg'];
-
-                                
-                                if (strpos($tableName, $pseudo) !== false) {
-                                    echo '<a href="index.php?table='.$tableName.'"><div class="box-contact">
-                                    <img width="30" height="30" src="https://img.icons8.com/color/30/user-male-circle--v1.png" alt="user-male-circle"/>
-                                    <span class="nom">'.$tableName.'</span>
-                                    </div></a>
-                                    ';
-                                    
+                            foreach($result_table as $table_schema) {
+                                $usr1 = $table_schema['usr1'];
+                                $usr2 = $table_schema['usr2'];
+                                $date = $table_schema['date'];
+                                $tableName = $table_schema['tablename'];
+                                if ($usr1 == $pseudo) {
+                                    $usr = $usr2;
+                                } else {
+                                    $usr = $usr1;
                                 }
-                                else {
+
+                                echo '<a href="index.php?table='.$tableName.'"><div class="box-contact">
+                                <img width="30" height="30" src="https://img.icons8.com/color/30/user-male-circle--v1.png" alt="user-male-circle"/>
+                                <span class="nom">'.$usr.'</span>
+                                </div></a>
+                                ';
                                     
                                 }
                                 
+                                
 
-                            }
+                            
                         } catch (PDOException $e) {
                             echo "Erreur : " . $e->getMessage();
                         }
@@ -97,7 +96,7 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
         </div>
         <div id="discussion">
 
-<iframe src="msg.php?table=<?=$table?>" frameborder="0" width="100%" height="100%" id="msgframe" ></iframe>
+<iframe src="/home/discussion/msg.php?table=<?=$table?>" frameborder="0" width="100%" height="100%" id="msgframe" ></iframe>
 <span class="input-group mb-3">
     <form action="send_msg.php" method="post" id="sending">
         <input type="text" class="form-control bg-dark text-light" placeholder="Nom d'utilisateur du destinataire" aria-label="Nom d'utilisateur du destinataire" aria-describedby="button-addon2" name="message">

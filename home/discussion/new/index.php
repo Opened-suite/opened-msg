@@ -27,7 +27,9 @@ try {
             time_send BIGINT(50),
             by_send VARCHAR(50)
         )");
+        $req_shchema = $bdd2->prepare("INSERT INTO schema_table (tablename, usr1, usr2, date) VALUES ('".$pseudo_create."TO".$pseudo."', '$pseudo', '$pseudo_create', NOW())");
         $req_create->execute();
+        $req_shchema->execute();
         echo "Table créée avec succès.";
         header("location: ../index.php?table=".$pseudo_create."TO".$pseudo);
     } else {
