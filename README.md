@@ -15,6 +15,8 @@ Table des matières
 
 * Executez le fichier : `config.sql`
 
+* Executez le fichier : `msg.sql` également
+
 * Configurez le fichier : `config/config_db.php`
 
 * Et voilà, 
@@ -34,5 +36,5 @@ Nous esperons que vous allez bien profiter du service
 `#9C6644` 
 
 
-* Si vous souhaitez la modifier, allez dans le fichier `style/root.css`
+* Si vous souhaitez la modifier, allez dans le fichier `style/shared.css`
 et modifiez les couleurs 
