@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once ("../../config/config_db.php");
+include_once "../../config/config_db.php";
 
 if (!isset($_SESSION["pseudo"]) && !isset($_SESSION["token"])) {
     header("location: /");
@@ -95,8 +95,9 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
             </div>
         </div>
         <div id="discussion">
-
-<iframe src="/home/discussion/msg.php?table=<?=$table?>" frameborder="0" width="100%" height="100%" id="msgframe" ></iframe>
+<div class="iframemsg">
+    <iframe src="/home/discussion/msg.php?table=<?=$table?>" frameborder="0" width="100%" height="90%" id="msgframe" ></iframe>
+</div>
 <span class="input-group mb-3">
     <form action="send_msg.php" method="post" id="sending">
         <input type="text" class="form-control bg-dark text-light" placeholder="Nom d'utilisateur du destinataire" aria-label="Nom d'utilisateur du destinataire" aria-describedby="button-addon2" name="message">
@@ -110,9 +111,8 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
         </div>
         
     </body>
-    <script>
     
-    </script>
-            <script src="test_api.js" defer></script>
+    
+            <script src="api/msg/msgapi.js" defer></script>
 
 </html>
