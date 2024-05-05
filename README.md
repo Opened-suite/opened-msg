@@ -33,7 +33,7 @@ Nous esperons que vous allez bien profiter du service
 `#DDB892`  
 `#B08968`  
 `#7F5539`  
-`#9C6644` 
+`z` 
 
 
 * Si vous souhaitez la modifier, allez dans le fichier `style/shared.css`

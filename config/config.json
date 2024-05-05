@@ -2,8 +2,10 @@
   "general": {
     "name" : "OpenedMessage",
     "namesimp" : "OpenedMSG",
-    "logopath" : "https://i.imgur.com/8ZG3Lg9.png"
+    "logopath" : "/OpenedSuite.png"
   },
+
+  
   "db": {
     "user": "root",
     "password": "root"

@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket.IO Client</title>
+    <title>Client Socket.IO</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js" integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #status {
+            font-size: 24px;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Socket.IO Client</h1>
-    
-    <form id="connection-form">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required>
-        <button type="submit">Se connecter</button>
-    </form>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js" integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
-    
+    <h1>Client Socket.IO</h1>
+    <div id="status">En attente de la connexion...</div>
 
     <script>
-        const socket = io();
+        
+        const socket = io('http://localhost:3000');
 
-        const connectionForm = document.getElementById('connection-form');
-        connectionForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const usernameInput = document.getElementById('username');
-            const username = usernameInput.value.trim();
+        socket.on('connect', () => {
+            document.getElementById('status').innerText = 'Connecté au serveur Socket.IO';
+        });
 
-            if (username !== '') {
-                socket.emit('login', username);
-                usernameInput.value = '';
-            }
+        socket.on('disconnect', () => {
+            document.getElementById('status').innerText = 'Déconnecté du serveur Socket.IO';
         });
     </script>
 </body>

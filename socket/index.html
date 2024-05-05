@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En ligne ou pas?</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #status {
+            font-size: 24px;
+            margin-top: 50px;
+        }
+        #ipList {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>En ligne ou pas?</h1>
+    <div id="status">En attente de la connexion...</div>
+    <div id="ipList"></div>
+
+    <script>
+        const socket = io('http://localhost:3000');
+
+        socket.on('connect', () => {
+            document.getElementById('status').innerText = 'Connecté au serveur Socket.IO';
+        });
+
+        socket.on('disconnect', () => {
+            document.getElementById('status').innerText = 'Déconnecté du serveur Socket.IO';
+            document.getElementById('ipList').innerHTML = ''; // Réinitialise la liste des adresses IP lors de la déconnexion
+        });
+
+        socket.on('update', (data) => {
+            document.getElementById('status').innerText = 'En ligne';
+            const ipListElement = document.getElementById('ipList');
+            ipListElement.innerHTML = ''; // Réinitialise la liste des adresses IP pour éviter les doublons
+            data.forEach(ip => {
+                const ipElement = document.createElement('div');
+                ipElement.textContent = `${ip.address} : ${ip.status}`;
+                ipListElement.appendChild(ipElement);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -192,18 +192,7 @@ body {
 .input-group {
     width: 100% !important; 
 }
-@media (min-width: 320px) and (max-width: 1024px) {
-    #contacts {
-        display: none !important;
-        width: 0%;
 
-    }
-    #discution {
-        width: 100% !important;
-        left: 0;
-        right: 0;
-    }
-}
 nav.discnav {
     position: fixed;
     top: 0;
@@ -263,6 +252,32 @@ nav.discnav .info {
     margin-left: 10%;
     margin-right: 10%;
 
+}
+@media (min-width: 320px) and (max-width: 1024px) {
+    body {
+        flex-direction: column;
+        margin: 0;
+    }
+    #contacts {
+        display: none !important;
+        height: 0%;
+        width: 0%;
+
+    }
+    #discussion {
+        width: 100% !important;
+        left: 0;
+        right: 0;
+    }
+    #sending {
+        width: 100%;
+    }
+    #msgframe {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        height: 90%;
+    }
 }
 
 
