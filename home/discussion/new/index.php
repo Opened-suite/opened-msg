@@ -25,7 +25,8 @@ try {
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             msg LONGTEXT NOT NULL,
             time_send BIGINT(50),
-            by_send VARCHAR(50)
+            by_send VARCHAR(50),
+            attachement LONGTEXT NULL
         )");
         $req_shchema = $bdd2->prepare("INSERT INTO schema_table (tablename, usr1, usr2, date) VALUES ('".$pseudo_create."TO".$pseudo."', '$pseudo', '$pseudo_create', NOW())");
         $req_create->execute();

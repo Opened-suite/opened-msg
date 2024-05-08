@@ -5,22 +5,21 @@ Le nouvel outil de messagerie instantané opensource basé sur du php pure, js p
 Table des matières  
  1. Comment installer *OpenedMessage*?
  2. Comment changer de thème ?
+ 3. En cas de problèmes 
 
 
 *******
 
 ## Comment installer *OpenedMessage*
 
-* Installez ce repositorie github avec la commande : `git@github.com:Opened-suite/opened-msg.git`
+* Installez ce repositorie github avec la commande : `git@github.com:Opened-suite/opened-msg.git` ou téléchargez ce dossier sur github
 
 * Executez le fichier : `config.sql`
 
-* Executez le fichier : `msg.sql` également
-
-* Configurez le fichier : `config/config_db.php`
+* Configurez le fichier : `config/config_db.php` avec vos identifiants sql
 
 * Et voilà, 
-Nous esperons que vous allez bien profiter du service 
+Nous esperons que vous allez bien profiter du service gratuit de Opened Suite par Heberking
 
 
 
@@ -38,3 +37,8 @@ Nous esperons que vous allez bien profiter du service
 
 * Si vous souhaitez la modifier, allez dans le fichier `style/shared.css`
 et modifiez les couleurs 
+
+## En cas de problèmes 
+
+* En cas de problèmes, vous pouvez réinstaller openedsuite et apache / nginx pour pouvoir le régler 
+* Si ça persiste, veuillez contacter l'assistance : heberking.service@gmail.com

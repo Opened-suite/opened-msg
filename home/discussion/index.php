@@ -98,8 +98,23 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
 <div class="iframemsg">
     <iframe src="/home/discussion/msg.php?table=<?=$table?>" frameborder="0" id="msgframe" width="100%" height="100%"></iframe>
 </div>
-<span class="input-group mb-3">
-    <form action="send_msg.php" method="post" id="sending">
+<button id="btnpopupimg" onclick="popup()">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+  <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z"/>
+</svg>
+</button>
+   
+    <form action="send_msg.php" method="post" id="sending" enctype="multipart/form-data">
+    <div id="popup" class="hidden" >
+        <div class="form-floating mb-3">
+            <input type="file" class="form-control bg-dark text-light" id="floatingInput" name="file" accept="image/*">
+            <label for="floatingInput">Image</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="file" class="form-control bg-dark text-light" id="floatingInput" name="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.odt,.txt">
+            <label for="floatingInput">Doc</label>
+        </div>
+    </div>
         <input type="text" class="form-control bg-dark text-light" placeholder="Nom d'utilisateur du destinataire" aria-label="Nom d'utilisateur du destinataire" aria-describedby="button-addon2" name="message">
         <input class="btn btn-outline-light" type="submit" id="button-addon2" value="Envoyer">
 
@@ -114,5 +129,6 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
     
     
             <script src="api/msg/msgapi.js" defer></script>
+            <script src="/scripts/send/img.js" defer></script>
 
 </html>

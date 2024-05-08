@@ -1,18 +1,6 @@
 <?php
-   $config = json_decode(file_get_contents("config/config.json"), true);
 
-
-   // Get First Route
-   $general = $config["general"];
-   
-   
-   
-   
-   // General route
-   $name = $general["name"];
-   $logopath = $general["logopath"];
-   
-   
+include '/language/language.php';
    
    
    

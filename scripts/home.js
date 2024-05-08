@@ -71,3 +71,25 @@ contacts.forEach(c => {
     contactsHTML.appendChild(contact);
 })
 console.log(contactsHTML);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const messageContainers = document.querySelectorAll('.message-container');
+  
+    messageContainers.forEach((container) => {
+      const animationWrapper = container.querySelector('.animation-wrapper');
+      const img = animationWrapper.querySelector('img');
+  
+      // Add a random delay to the animation to make it look more natural
+      const randomDelay = Math.random() * 200;
+      animationWrapper.style.animationDelay = `${randomDelay}ms`;
+  
+      // Add a class to trigger the animation
+      animationWrapper.classList.add('animate');
+  
+      // Remove the animation wrapper after the animation is complete
+      animationWrapper.addEventListener('animationend', () => {
+        animationWrapper.remove();
+      });
+    });
+  });
