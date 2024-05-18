@@ -7,7 +7,7 @@ try {
     if (isset($_FILES['file'])) {
         $file = $_FILES['file'];
         // Check if the file is an image
-        $allowed_types = array('image/jpeg', 'image/gif', 'image/bmp');
+        $allowed_types = array('image/jpeg', 'image/gif', 'image/bmp', 'image/png', 'image/ico', 'image/svg+xml', 'image/webp');
         if (in_array($file['type'], $allowed_types)) {
             // Rename the file
             $new_name = uniqid(). '.'. pathinfo($file['name'], PATHINFO_EXTENSION);
@@ -26,7 +26,8 @@ try {
     
     require_once "../../config/config_db.php";
 
-    if (!empty($msg) && !empty($table)) {
+    if (!empty($table)) {
+        if (!empty($registered_name) OR !empty($msg)) {
         // Requête pour insérer un nouveau message dans la table spécifiée
         $query_add = 'INSERT INTO ' . $table . ' (msg, time_send, by_send, attachement) VALUES (:msg, :time_send, :by_send, :attachement)';
 
@@ -42,9 +43,16 @@ try {
         // Redirigez vers la page index.php avec le nom de la table en paramètre
         header('location: index.php?table=' . $table);
         exit; // Assurez-vous de terminer le script après la redirection
-    } else {
+        }
+        else {
+            // Si le message est vide, redirigez vers la page d'accueil
+            header("location: index.php?table=" . $table);
+            exit;
+        }
+    } 
+    else {
         // Si le message est vide, redirigez vers la page d'accueil
-        header("location: /");
+        header("location: index.php?table=" . $table);
         exit;
     }
 } catch (PDOException $e) {
@@ -54,3 +62,4 @@ try {
 
 ?>
 </div>
+

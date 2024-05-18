@@ -2,7 +2,7 @@
 session_start();
 try {
 $pseudo = $_POST["pseudo"];
-$pseudoadd = $_POST["pseudo_add"];
+$pseudoadd = htmlspecialchars($_POST["pseudo_add"]);
 
 require_once("../../../config/config_db.php");
 

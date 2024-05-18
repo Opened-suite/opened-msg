@@ -2,7 +2,7 @@
 session_start();
 include_once ("../../config/config_db.php");
 session_start();
-if (!isset($_SESSION["pseudo"]) && $_SESSION["token"]) {
+if (empty($_SESSION["pseudo"]) && empty($_SESSION["token"])) {
     header("location: /");
 } else {
     $pseudo = $_SESSION["pseudo"];

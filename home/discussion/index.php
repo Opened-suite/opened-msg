@@ -130,5 +130,8 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
     
             <script src="api/msg/msgapi.js" defer></script>
             <script src="/scripts/send/img.js" defer></script>
-
+<script>
+    let iframemsg = document.querySelector(".iframemsg");
+iframemsg.scrollTop = iframemsg.scrollHeight;
+</script>
 </html>

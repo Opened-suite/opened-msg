@@ -35,7 +35,6 @@ elseif ($result_usr["usr2"] == $pseudo) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>OpenedMSG</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="/home/home.js"></script>
 
         <link rel="stylesheet" href="/style/home.css">
         <link rel="stylesheet" href="/style/shared.css">
