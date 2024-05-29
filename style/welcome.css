@@ -1,13 +1,40 @@
-#welcome {
+.content {
+    position: absolute;
+    top: 10%;
     width: 100%;
-    height: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+#welcome {
+    width: 50%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+}
+#mockup {
+    width: 20%;
+    height: 90%;
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
 }
+#mockup img {
+    transform: perspective(200px) rotateX(10deg) rotateY(5deg);
+    filter: drop-shadow(var(--msg-color-bg-1) 0px 40px 29px);
+    
+    will-change: transform;
 
-#welcome div {
+}
+
+#welcome div#welcome {
     align-items: center;
     display: flex;
     justify-content: space-evenly;
@@ -20,9 +47,23 @@
     text-align: center;
 }
 
-#welcome div p {
+#welcome div#welcome p {
     margin-bottom: 5vh;
 }
+video#bg {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+    filter: blur(10px) brightness(1) drop-shadow(#000 0px 40px 29px);
+
+}
+
 
 .btnstart {
     

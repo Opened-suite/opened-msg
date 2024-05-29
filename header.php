@@ -10,9 +10,9 @@ if (isset($_SESSION["pseudo"]) && isset($_SESSION["token"])) {
 <link rel="stylesheet" href="/style/shared.css">
 <div id="centered">
     <nav id="navbar">
-        <a href="/">Accueil</a>
-        <a href="/home/">Messagerie</a>
-        <a href="/form/">Contactez-nous</a>
-        <a href="#"><?= $text_pseudo ?></a>
+        <a href="/"><img src="/OpenedSuite.png" alt=""></a>
+        <a href="/home/">Messages</a>
+        <a href="/form/">Contact Us</a>
+        <a href="/users/"><?= $text_pseudo ?></a>
     </nav>
 </div>
