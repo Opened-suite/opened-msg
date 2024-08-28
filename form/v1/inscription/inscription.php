@@ -44,7 +44,7 @@ try {
                 ":pseudo" => $pseudo,
                 ":contacts" => ""
             ]);
-            header("location: ../");
+            header("location: /");
         } else {
             echo "Cet utilisateur existe déjà";
         }

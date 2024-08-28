@@ -104,7 +104,7 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
 </svg>
 </button>
    
-    <form action="send_msg.php" method="post" id="sending" enctype="multipart/form-data">
+    <form  method="post" id="sending" enctype="multipart/form-data">
     <div id="popup" class="hidden" >
         <div class="form-floating mb-3">
             <input type="file" class="form-control bg-dark text-light" id="floatingInput" name="file" accept="image/*">
@@ -130,8 +130,36 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
     
             <script src="api/msg/msgapi.js" defer></script>
             <script src="/scripts/send/img.js" defer></script>
-<script>
-    let iframemsg = document.querySelector(".iframemsg");
-iframemsg.scrollTop = iframemsg.scrollHeight;
+<script defer>
+    const iframemsg = document.getElementById('msgframe');
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('sending');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('send_msg.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Success:', data);
+            // Réinitialiser le formulaire après l'envoi réussi
+            form.reset();
+            // Rediriger vers la page index.php avec le paramètre de table
+            const table = formData.get('table');
+
+            iframemsg.src = '/home/discussion/msg.php?table=' + table;
+
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+});
 </script>
 </html>

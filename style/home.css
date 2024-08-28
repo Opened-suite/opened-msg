@@ -85,6 +85,7 @@ body {
     left: 0;
     float: left;
     background-color: #212334;
+    color: #fff;
     animation-name: anim-shadow;
     animation-duration: 3s;
     animation-timing-function: linear;

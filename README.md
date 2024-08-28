@@ -4,7 +4,7 @@ Opened Message is the new open-source instant messaging tool built on pure PHP, 
 
 ---
 
-## Table of Contents
+## Table of Contents 
 - [Opened Message](#opened-message)
   - [Table of Contents](#table-of-contents)
   - [How to Install Opened Message](#how-to-install-opened-message)

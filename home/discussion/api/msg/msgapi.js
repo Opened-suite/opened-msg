@@ -1,6 +1,6 @@
 let valuejs = document.querySelector(".valuejs");
 let valuetable = document.querySelector(".valuetablejs");
-let iframemsg = document.querySelector(".iframemsg");
+
 setInterval(() => {
     fetch(`api/msg/msgapi.php?table=${valuetable.innerHTML}`)
         .then(function(response) {
@@ -17,5 +17,5 @@ setInterval(() => {
         .catch(function(error) {
             console.error("Erreur :", error);
         });
-}, 100);
+}, 1000);
 
