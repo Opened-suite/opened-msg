@@ -1,0 +1,21 @@
+{
+    "name": "opened-msg/notification-system",
+    "description": "Système de notification en temps réel pour les messages",
+    "type": "project",
+    "require": {
+        "cboden/ratchet": "^0.4.4",
+        "textalk/websocket": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "opened-msg\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Heberking",
+            "email": "heberking.service@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

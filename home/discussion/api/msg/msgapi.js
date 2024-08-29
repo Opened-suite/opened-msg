@@ -1,21 +1,19 @@
-let valuejs = document.querySelector(".valuejs");
-let valuetable = document.querySelector(".valuetablejs");
+const socket = new WebSocket('ws://localhost:8001');
+const userTable = "messages_utilisateur_1"
 
-setInterval(() => {
-    fetch(`api/msg/msgapi.php?table=${valuetable.innerHTML}`)
-        .then(function(response) {
-            if (!response.ok) {
-                throw new Error("La réponse n'est pas OK. Statut : " + response.status);
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            if (data !== Number(valuejs.innerText)) {
-				iframemsg.location = iframemsg.location;
-            }
-        })
-        .catch(function(error) {
-            console.error("Erreur :", error);
-        });
-}, 1000);
+socket.onopen = function(event) {
+    console.log("WebSocket connecté");
+};
 
+socket.onerror = function(error) {
+    console.error("Erreur WebSocket:", error);
+};
+
+socket.onmessage = function(event) {
+    console.log("Message reçu:", event.data);
+    const data = JSON.parse(event.data);
+    if (data.table === userTable && data.new_message) {
+        console.log("Actualisation de l'iframe");
+        document.getElementById('msgframe').contentWindow.location.reload();
+    }
+};

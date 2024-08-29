@@ -28,6 +28,10 @@ elseif ($result_usr["usr2"] == $pseudo) {
     $usr = $result_usr["usr1"];
 
 }
+$maxIDresult = $bdd2->prepare('SELECT max(ID) as maxID FROM '.$table);
+$maxIDresult->execute();
+$maxIDvalue = $maxIDresult->fetch();
+echo "<div class='hidden valuejs'>". $maxIDvalue['maxID'] . "</div>";
 ?>
   
         <meta charset="UTF-8">

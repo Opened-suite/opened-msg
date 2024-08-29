@@ -20,10 +20,7 @@ if (!isset($_GET["table"])) {
 } else {
     $table = htmlspecialchars($_GET["table"]); // Assurez-vous de sécuriser la valeur de $_GET["table"]
 }
-$maxIDresult = $bdd2->prepare('SELECT max(ID) as maxID FROM '.$table);
-$maxIDresult->execute();
-$maxIDvalue = $maxIDresult->fetch();
-echo "<div class='hidden valuejs'>". $maxIDvalue['maxID'] . "</div>";
+
 echo "<div class='hidden valuetablejs'>".$table."</div>";
         
 ?>
