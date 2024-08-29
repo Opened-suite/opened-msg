@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://localhost:8001');
+const socket = new WebSocket('ws://78.192.172.224:8001');
 const userTable = "messages_utilisateur_1"
 
 socket.onopen = function(event) {

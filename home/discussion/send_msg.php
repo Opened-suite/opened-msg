@@ -40,7 +40,6 @@ try {
         // Vous pouvez logger le résultat de l'API si nécessaire
         error_log("Résultat de l'API: " . json_encode($api_result));
         
-        header('location: index.php?table=' . $table);
         exit;
     } 
     else {

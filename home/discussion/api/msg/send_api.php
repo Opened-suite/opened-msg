@@ -6,7 +6,7 @@ use WebSocket\Client;
 function notifyNewMessage($table)
 {
     try {
-        $client = new Client("ws://localhost:8001");
+        $client = new Client("ws://78.192.172.224:8001");
         $message = json_encode(['table' => $table]);
         $client->send($message);
         $response = $client->receive();
