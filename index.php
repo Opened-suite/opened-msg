@@ -1,10 +1,6 @@
 <?php
     $name = "OpenedMSG";
-$eula = file_get_contents('./sys/eula.txt');   
-   if ($eula != "true") {
-        header("location: ./boot/eula.php");
-   }
-   
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

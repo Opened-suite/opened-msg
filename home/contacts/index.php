@@ -23,40 +23,15 @@ if (empty($_SESSION["pseudo"]) && empty($_SESSION["token"])) {
     <script src="../../scripts/search.js" defer></script>
     <title>Liste Des Contacts</title>
     <style>
-        .box-contact {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #ccc;
-            margin: 5px;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .box-contact .status {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .status.online {
-            background-color: green;
-        }
-
-        .status.offline {
-            background-color: gray;
-        }
+        
     </style>
 </head>
 
 <body>
     <nav>
-        <span class="logo">Palo MSG</span>
+        <span class="logo">OpenedMSG</span>
         <span class="rechercher"><input type="text" name="search" id="search" placeholder="  Search"></span>
-        <span class="add"><a href="add/">  Ajouter</a></span>
+        <span class="add"><a href="add/">  <img width="48" height="48" src="https://img.icons8.com/fluency/48/plus.png" alt="plus"/></a></span>
     </nav>
     <div class="contacts">
         <div class="title">--------- Récemment Contactés ---------</div>
@@ -117,37 +92,7 @@ if (empty($_SESSION["pseudo"]) && empty($_SESSION["token"])) {
             ?>
         </div>
     </div>
-    <script>
-        const ws = new WebSocket('ws://localhost:8080');
-        const contactElements = document.querySelectorAll('.box-contact');
-        const pseudo = document.querySelector('.pseudo').textContent;
-
-        ws.onopen = () => {
-            contactElements.forEach(contact => {
-                const username = contact.dataset.username;
-                ws.send(JSON.stringify({ action: 'check_status', username }));
-            });
-        };
-
-        ws.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            if (data.action === 'user_status') {
-                const contactElement = document.querySelector(`.box-contact[data-username="${data.username}"]`);
-                if (contactElement) {
-                    const statusElement = contactElement.querySelector('.status');
-                    if (data.status) {
-                        statusElement.classList.remove('offline');
-                        statusElement.classList.add('online');
-                    } else {
-                        statusElement.classList.remove('online');
-                        statusElement.classList.add('offline');
-                    }
-                }
-            }
-        };
-        console.log(contactElements);
-        console.log(pseudo);
-    </script>
+    
 </body>
 
 </html>

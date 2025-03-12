@@ -25,6 +25,7 @@ nav {
     
 }
 
+
 #formbox div input[type=text] {
     border: solid 2px black;
     background-color: var(--surface-dark-color-2);
@@ -36,7 +37,12 @@ nav {
 
 nav .rechercher {
     margin-top: 0.5%;
+    margin-left: 5%;
 }
+nav .logo {
+    margin-left: 2%;
+}
+
 nav .rechercher input[type=text] {
     margin-top: 0.6%;
     border: 1px solid var(--text-dark-color-1);
