@@ -18,6 +18,7 @@ toggleUsersButton.onclick = () => {
 function putIframe(link) {
     // Gets the iframe and store it in the variable iframe
     iframe.style.boxShadow = "-50px 0px 50px var(--mixed-light-color-1)"
+    iframe.style.display = "block"
     document.querySelector("#close").classList.remove("hidden")
     document.querySelector(".actions").style.width = "50%"
     document.querySelector(".content").style.width = "40%"

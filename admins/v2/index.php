@@ -53,7 +53,7 @@ try {
                 $ip = $_SESSION["ip"];
             }
 
-            // Informations de connexion à la base de données
+           
             
             try {
                 
@@ -67,7 +67,6 @@ try {
                 while ($row = $stmt_alr_contacted->fetch(PDO::FETCH_ASSOC)) {
                     $tableName = $row['Tables_in_msg'];
 
-                    // Vérification si le nom de la table contient "jerem"
                     echo '<a href="javascript:putIframe(`' . $tableName . '`)"><div class="box-contact">
                                 <span class="nom">' . $tableName . '/</span>
                             </div></a>';

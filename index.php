@@ -1,9 +1,8 @@
 <?php
-include_once "sys/stats.php";
     $name = "OpenedMSG";
-$eula = file_get_contents('sys/eula.txt');   
+$eula = file_get_contents('./sys/eula.txt');   
    if ($eula != "true") {
-        header("location: boot/eula.php");
+        header("location: ./boot/eula.php");
    }
    
 ?>
@@ -22,7 +21,7 @@ $eula = file_get_contents('sys/eula.txt');
     Votre navigateur ne supporte pas la balise vidéo.
 </video>
     <?php
-        include("header.php")
+        include("./header.php")
     ?>
     <div class="content">
         <div id="mockup">

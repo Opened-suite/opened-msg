@@ -66,11 +66,16 @@ document.querySelector("form").addEventListener("submit", (e) => {
         return res.json();
     })
     .then(data => {
-        if (data.error) {
-            showErrorPopup(data.error);
+        // Supposons que l'API renvoie { success: true, message: "..." } en cas de succès
+        if (data.success) {
+            // Appliquer une bordure et une box shadow verte sur les champs du formulaire
+            const inputs = document.querySelectorAll("input[name=pseudo], input[name=pseudo_add]");
+            inputs.forEach(input => {
+                input.style.border = "2px solid green";
+                input.style.boxShadow = "0 0 10px green";
+            });
         } else {
-            console.log("Utilisateur ajouté avec succès.");
-            // Faire quelque chose avec les données de succès
+            showErrorPopup(data.error || data.message);
         }
     })
     .catch(error => {
@@ -81,13 +86,11 @@ document.querySelector("form").addEventListener("submit", (e) => {
 function showErrorPopup(message) {
     document.getElementById("errorMessage").textContent = message;
     document.getElementById("errorPopup").style.display = "block";
-    
 }
 
 // Fermer la popup quand on clique sur le X
 document.querySelector(".close").onclick = function() {
     document.getElementById("errorPopup").style.display = "none";
-    
 }
 
 // Fermer la popup si on clique en dehors
@@ -96,6 +99,7 @@ window.onclick = function(event) {
         document.getElementById("errorPopup").style.display = "none";
     }
 }
+
 </script>
 </body>
 

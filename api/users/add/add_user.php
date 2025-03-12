@@ -3,9 +3,9 @@ session_start();
 header('Content-Type: application/json');
 
 try {
-    // Vérification et nettoyage des entrées
-    $pseudo = htmlspecialchars($_POST["pseudo"]);
-    $pseudoadd = htmlspecialchars($_POST["pseudo_add"]);
+    // Vérification et nettoyage des entrées avec trim pour enlever les espaces superflus
+    $pseudo    = trim(htmlspecialchars($_POST["pseudo"]));
+    $pseudoadd = trim(htmlspecialchars($_POST["pseudo_add"]));
 
     if (empty($pseudoadd)) {
         throw new Exception("Veuillez entrer un nom d'utilisateur à ajouter");
@@ -31,32 +31,43 @@ try {
         throw new Exception("Vous ne pouvez pas vous ajouter vous-même");
     }
 
-    // Récupération des contacts actuels
     $query = "SELECT contacts FROM contacts WHERE pseudo = ?";
     $stmt_contacts = $bdd->prepare($query);
     $stmt_contacts->execute([$pseudo]);
     $result_contacts = $stmt_contacts->fetch(PDO::FETCH_ASSOC);
 
     if ($result_contacts) {
-        $contacts = $result_contacts['contacts'] ? explode(";", $result_contacts['contacts']) : [];
-        if (!in_array($pseudoadd, $contacts)) {
+        $contacts = !empty($result_contacts['contacts']) 
+                    ? array_map('trim', explode(";", $result_contacts['contacts'])) 
+                    : [];
+        if (!in_array($pseudoadd, $contacts, true)) {
             $contacts[] = $pseudoadd;
             $new_contacts = implode(";", $contacts);
         } else {
-            throw new Exception("Ce contact est déjà dans votre liste");
+            echo json_encode([
+                "success" => true, 
+                "message" => "Ce contact est déjà dans votre liste"
+            ]);
+            exit;
         }
     } else {
         $new_contacts = $pseudoadd;
     }
 
-    // Mise à jour des contacts
-    $query_update = "INSERT INTO contacts (pseudo, contacts) VALUES (?, ?) ON DUPLICATE KEY UPDATE contacts = ?";
+    $query_update = "INSERT INTO contacts (pseudo, contacts) VALUES (?, ?)
+                     ON DUPLICATE KEY UPDATE contacts = ?";
     $stmt_update = $bdd->prepare($query_update);
     $stmt_update->execute([$pseudo, $new_contacts, $new_contacts]);
 
-    echo json_encode(["success" => true, "message" => "Contact ajouté avec succès"]);
+    echo json_encode([
+        "success" => true, 
+        "message" => "Contact ajouté avec succès"
+    ]);
 
 } catch (Exception $e) {
     http_response_code(400);
-    echo json_encode(["error" => $e->getMessage()]);
+    echo json_encode([
+        "success" => false,
+        "message" => $e->getMessage()
+    ]);
 }
