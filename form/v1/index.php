@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" href="/style/login.css">
+    <link rel="stylesheet" href="/style/header.css">
+    
     <link rel="stylesheet" href="/style/shared.css">
     <title>Formulaire Inscription</title>
 </head>
@@ -27,6 +29,9 @@
                 <input type="submit" value="Envoyer">
             </div>
             <p class="link-register" style="font-size: 15px; color: #000;"><a href="inscription/" >Vous n'avez pas de compte ? Créez en un !</a></p>
+        </div>
+        <div class="example-brand">
+
         </div>
     </form>
     

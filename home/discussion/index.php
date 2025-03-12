@@ -101,23 +101,24 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
 </svg>
 </button>
    
-    <form  method="post" id="sending" enctype="multipart/form-data">
-    <div id="popup" class="hidden" >
+<form method="post" id="sending" enctype="multipart/form-data">
+    <div id="popup" class="hidden">
         <div class="form-floating mb-3">
-            <input type="file" class="form-control bg-dark text-light" id="floatingInput" name="file" accept="image/*">
-            <label for="floatingInput">Image</label>
+            <input type="file" class="form-control bg-dark text-light" id="imageFile" name="image_file" accept="image/*">
+            <label for="imageFile">Image</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="file" class="form-control bg-dark text-light" id="floatingInput" name="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.odt,.txt">
-            <label for="floatingInput">Doc</label>
+            <input type="file" class="form-control bg-dark text-light" id="docFile" name="doc_file" accept=".doc,.docx,.odt,.txt">
+            <label for="docFile">Document</label>
         </div>
     </div>
-        <input type="text" class="form-control bg-dark text-light" placeholder="Nom d'utilisateur du destinataire" aria-label="Nom d'utilisateur du destinataire" aria-describedby="button-addon2" name="message">
-        <input class="btn btn-outline-light" type="submit" id="button-addon2" value="Envoyer">
+    <input type="text" class="form-control bg-dark text-light" placeholder="Nom d'utilisateur du destinataire" name="message">
+    <input class="btn btn-outline-light" type="submit" value="Envoyer">
+    <input type="hidden" name="table" value="<?=$table?>">
+    <input type="hidden" name="bysend" value="<?=$pseudon?>">
+</form>
+<div id="error-messages" class="alert alert-danger d-none" role="alert"></div>
 
-        <input type="hidden" name="table" value="<?=$table?>">
-        <input type="hidden" name="bysend" value="<?=$pseudon?>">
-    </form>
 </span>
 
         </div>
@@ -130,10 +131,11 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
 <script defer>
     const iframemsg = document.getElementById('msgframe');
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('sending');
+    const errorMessages = document.getElementById('error-messages');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         const formData = new FormData(form);
@@ -142,21 +144,25 @@ echo "<div class='hidden valuetablejs'>".$table."</div>";
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-            // Réinitialiser le formulaire après l'envoi réussi
-            form.reset();
-            // Rediriger vers la page index.php avec le paramètre de table
-            const table = formData.get('table');
-
-            iframemsg.src = '/home/discussion/msg.php?table=' + table;
-
+            if (data.success) {
+                errorMessages.classList.add('d-none');
+                errorMessages.innerHTML = '';
+                form.reset();
+                alert(data.message); // Affiche un message de succès
+            } else {
+                errorMessages.classList.remove('d-none');
+                errorMessages.innerHTML = data.errors.map(err => `<p>${err}</p>`).join('');
+            }
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error:', error);
+            errorMessages.classList.remove('d-none');
+            errorMessages.innerHTML = '<p>Une erreur inconnue est survenue.</p>';
         });
     });
 });
+
 </script>
 </html>

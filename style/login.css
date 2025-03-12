@@ -1,71 +1,114 @@
+/* Centre le contenu de la page */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh; /* Ajout pour garantir un centrage même avec un contenu réduit */
+    margin: 0; /* Supprime les marges par défaut */
+    font-family: Arial, sans-serif; /* Ajout pour un style de texte uniforme */
+    background-color: var(--background-dark-color); /* Ajout pour une meilleure cohérence visuelle */
 }
+#welcome {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 100%;
 
-#formbox {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
-    height: 75vh;
-    width: 75vw;
-    flex-direction: column;
-    border-radius: 20px;
-    border: 2px solid var(--mixed-dark-color-1);
     background-color: var(--surface-dark-color-3);
-    justify-content: space-evenly;
-    font-size: 2rem;
-    font-weight: bolder;
 
 }
 
+/* Conteneur principal du formulaire */
+#formbox {
+    
+    display: flex;
+    justify-content: space-evenly; /* Remplacé pour espacer les éléments uniformément */
+    align-items: center;
+    width: 50%;
+    margin-top: 10%;
+    height: 90%;
+    flex-direction: column;
+    font-size: 1.8rem; /* Ajusté pour une meilleure lisibilité */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ajout pour un effet de profondeur */
+    padding: 2rem; /* Ajout pour plus d'espace interne */
+}
+
+/* Conteneur des éléments individuels */
 #formbox div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    flex-grow: 100;
     text-align: center;
+    margin-bottom: 1rem; /* Ajout pour espacer verticalement les sections */
 }
 
+/* Styles des champs de saisie */
 #formbox div input {
-    font-weight: bolder;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Ajout pour une transition fluide */
 }
-
 
 #formbox div input[type=email],
 #formbox div input[type=password],
 #formbox div input[type=text] {
-    border: solid 2px black;
+    border: 2px solid black;
     width: 50%;
-    padding: 1vmin;
-    font-size: 2vmin;
+    padding: 1rem; /* Augmenté pour une meilleure ergonomie */
+    font-size: 1.6rem; /* Ajusté pour une meilleure lisibilité */
     border-radius: 5px;
     text-align: center;
     background-color: var(--surface-dark-color-2);
     outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'un effet en relief */
 }
 
 #formbox div input[type=email]:focus,
 #formbox div input[type=password]:focus,
 #formbox div input[type=text]:focus {
     background-color: var(--surface-dark-color-1);
+    border-color: var(--highlight-color); /* Ajout pour une meilleure indication de focus */
+    box-shadow: 0 0 5px var(--highlight-color); /* Ajout pour un effet lumineux */
 }
 
+/* Style du bouton de soumission */
 #formbox input[type=submit] {
-    padding: 5px;
-    height: 5vh;
+    padding: 0.5rem 1rem; /* Ajusté pour un design plus équilibré */
+    height: auto; /* Retrait de la hauteur fixe pour plus de flexibilité */
     width: 50%;
     border-radius: 10px;
     border: 2px solid var(--mixed-dark-color-3);
     background-color: var(--surface-dark-color-1);
-    cursor: pointer
+    cursor: pointer;
+    font-size: 1.6rem;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Ajout d'une transition fluide */
 }
+
+#formbox input[type=submit]:hover {
+    background-color: var(--highlight-color);
+    transform: scale(1.05); /* Effet visuel attractif au survol */
+}
+
+/* Lien d'inscription */
 .link-register {
-    font-size: 2vmin;
+    font-size: 1.4rem; /* Réduit pour s'adapter à l'interface globale */
+    color: var(--highlight-color); /* Ajout pour attirer l'attention */
+    text-decoration: none; /* Supprime le soulignement par défaut */
+    margin-top: 1rem; /* Ajout pour espacer le lien */
 }
+
+.link-register:hover {
+    text-decoration: underline; /* Ajout d'un effet au survol */
+}
+
+/* Indicateur de force du mot de passe */
 #passwordStrength {
-    font-size: 5vmin;
+    font-size: 1.6rem; /* Réduit pour un alignement visuel global */
+    color: var(--text-color); /* Ajout pour s'intégrer au thème */
+    margin-top: 1rem; /* Ajout pour espacer visuellement */
 }

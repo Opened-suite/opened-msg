@@ -145,7 +145,7 @@ body {
     display: ltr;
     max-width: 40%;
     overflow-wrap: break-word;
-    margin-top: 15px;
+    margin-top: 30px;
     scroll-behavior: smooth;
 
 }
@@ -318,9 +318,8 @@ nav.discnav .info {
   }
   
   .attachement {
-    position: absolute;
-    top: 0;
-    left: 100%;
+    width: 100px;
+    height: 10vw;
     animation: slideInFromRight 1s ease-out forwards;
   }
   
@@ -334,6 +333,56 @@ nav.discnav .info {
       opacity: 1;
     }
   }
+  
+.message-status {
+    position: absolute;
+    bottom: -25px;
+}
 
+/* Zone des messages d'erreur */
+#error-messages {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #ff4d4d; /* Rouge vif pour signaler une erreur */
+    border: 1px solid #ff0000; /* Bordure rouge plus foncée */
+    display: none; /* Caché par défaut */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Effet d'ombre douce */
+}
 
+/* Animation d'apparition de l'erreur */
+#error-messages.show {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Texte des erreurs individuelles */
+#error-messages p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #error-messages {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
 

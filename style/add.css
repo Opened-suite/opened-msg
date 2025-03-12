@@ -50,3 +50,42 @@ label {
     font-size: 3rem;
     font-weight: bolder;
 }
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .popup-content {
+    background-color: var(--primary-dark-color-2);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ff0000;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 1px 20px var(--error-dark-color);
+  }
+  
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: var(--error-dark-color);
+    text-decoration: none;
+    cursor: pointer;
+  }

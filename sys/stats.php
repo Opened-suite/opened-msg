@@ -1,5 +1,5 @@
 <?php 
-require_once("../config/config_db.php");
+require_once(__DIR__ . "\config\config_db.php");
 function isTimestampOlderThanOneYear($timestamp) {
     // Obtenir la date actuelle
     $currentDate = new DateTime();

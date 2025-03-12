@@ -1,5 +1,5 @@
 <?php
-include_once "/sys/stats.php";
+include_once "sys/stats.php";
     $name = "OpenedMSG";
 $eula = file_get_contents('sys/eula.txt');   
    if ($eula != "true") {
@@ -31,7 +31,7 @@ $eula = file_get_contents('sys/eula.txt');
         <div id="welcome">
             
             <p>Bienvenue sur <?= $name; ?> Veuillez créer un compte pour commencer à chatter avec vos amis!</p>
-            <a href="form/v1/inscription/" class="btnstart">Créer un compte</a>
+            <a href="/form/v1/inscription/" class="btnstart">Créer un compte</a>
                     
                 
 

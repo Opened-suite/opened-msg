@@ -18,16 +18,7 @@ $query_usr = 'SELECT usr1, usr2 FROM schema_table WHERE tablename = "' . $_GET["
 $stmt_usr = $bdd2->prepare($query_usr);
 $stmt_usr->execute();
 $result_usr = $stmt_usr->fetch(PDO::FETCH_ASSOC);
-if ($result_usr["usr1"] != $pseudo && $result_usr["usr2"] != $pseudo) {
-    header("location: /");
-}
-elseif ($result_usr["usr1"] == $pseudo) {
-    $usr = $result_usr["usr2"];
-}
-elseif ($result_usr["usr2"] == $pseudo) {
-    $usr = $result_usr["usr1"];
 
-}
 $maxIDresult = $bdd2->prepare('SELECT max(ID) as maxID FROM '.$table);
 $maxIDresult->execute();
 $maxIDvalue = $maxIDresult->fetch();
@@ -79,7 +70,7 @@ echo "<div class='hidden valuejs'>". $maxIDvalue['maxID'] . "</div>";
                     </svg>
                 </div>
                 </a>
-                <a href="">
+                <a onclick="userDash()">
                 <div class="user-dash">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
@@ -100,73 +91,49 @@ echo "<div class='hidden valuejs'>". $maxIDvalue['maxID'] . "</div>";
         <div id="messages">
 
 <?php
-if (!isset($_SESSION["pseudo"]) && !isset($_SESSION["token"])) {
-    header("location: /");
-}
-else {
-    $pseudo = $_SESSION["pseudo"];
-    $token = $_SESSION["token"];
-    $email = $_SESSION["email"];
-    $ip = $_SESSION["ip"];
-}
+$query_admin = 'SELECT `grade` FROM `users` WHERE `pseudo` = :pseudo';
+$stmt_admin = $bdd->prepare($query_admin);
+$stmt_admin->bindParam(':pseudo', $pseudo);
+$stmt_admin->execute();
+$grade = $stmt_admin->fetch(PDO::FETCH_ASSOC)['grade'];
 
+$query = "SELECT * FROM $table ORDER BY time_send ASC";
+$stmt = $bdd2->prepare($query);
+$stmt->execute();
+$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-try {
-    require_once("../../config/config_db.php");
-
-    // Check si il est admin
-    $query_admin = 'SELECT `grade` FROM `users` WHERE `pseudo` = "' . $pseudo. '"';
-    $stmt_admin = $bdd->prepare($query_admin);
-    $stmt_admin->execute();
-    $grade = $stmt_admin->fetchAll(PDO::FETCH_ASSOC);
-
+foreach ($messages as $message) {
+    $messageClass = ($message['by_send'] == $pseudo) ? 'you' : 'other';
+    $attachmentHtml = '';
     
-    // Requête pour récupérer les messages de la table spécifiée
-    $query_get_messages = 'SELECT * FROM '. $table;
-    $stmt_messages = $bdd2->prepare($query_get_messages);
-    $stmt_messages->execute();
-    $messages = $stmt_messages->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($messages as $message) {
-        if ($message["by_send"] == $pseudo) { 
-            if ($message["attachement"] != NULL) {
-                echo  '<div class="you msg"><div class="animation-wrapper">' . $message["msg"] . '</div><span class="date">'  . date('m/d/Y &#9679; H:i:s', $message["time_send"]) . '</span>' . '<div class="animation-wrapper"><img src="/home/discussion/img/' . $message["attachement"] . '" alt="attachement" class="attachement">' . '</div></div>';
-            }
-            else {
-                echo '<div class="you msg">' . $message["msg"] . "<span class='date'>" . date('m/d/Y &#9679; H:i:s', $message["time_send"]) . '</span>' . '</div>';
-            }
-            
-        }
-        elseif($message["by_send"] == "admin") {
-            if ($message["attachement"] != NULL) {
-                echo '<div class="other msg">' . $message["msg"] . "<span class='date'>" . date('m/d/Y &#9679; H:i:s', $message["time_send"]) . '</span>' . '<img src="/home/discussion/img/' . $message["attachement"] . '" alt="attachement" class="attachement">' . '</div>';
-            }
-            else {
-                echo '<div class="other msg">' . $message["msg"] . "<span class='date'>" . date('m/d/Y &#9679; H:i:s', $message["time_send"]) . '</span>' . '</div>';
-            }
-            
-        }
-        else {
-            if ($message["attachement"] != NULL) {
-                echo '<div class="other msg">' . $message["msg"] . "<span class='date'>" . date('m/d/Y &#9679; H:i:s', $message["time_send"]) . '</span>' . '<img src="/home/discussion/img/' . $message["attachement"] . '" alt="attachement" class="attachement">' . '</div>';
-            }
-            else {
-                echo '<div class="other msg">' . $message["msg"] . "<span class='date'>" . date('m/d/Y &#9679; H:i:s', $message["time_send"]) . '</span>' . '</div>';
-            }
-        }
-
-        $lastmsg = $message["id"];
-        
-        
+    if (!empty($message['attachement'])) {
+        $attachmentHtml = '<img src="img/' . $message['attachement'] . '" alt="attachement" class="attachement">';
     }
     
+    echo '<div class="' . $messageClass . ' msg" data-message-id="' . $message['ID'] . '">';
+    echo '<div class="animation-wrapper">' . $message['msg'] .'</div>';
+    echo "<span class='date'>" . date('m/d/Y &#9679; H:i:s', $message['time_send']) . "</span>";
     
-}   
-catch (PDOException $e) {
-    echo "Erreur de connexion à la base de données : " . $e->getMessage();
+    
+    
+    if (!empty($attachmentHtml)) {
+        echo '<div class="animation-wrapper">' . $attachmentHtml . '</div>';
+    }
+    if ($message['by_send'] == $pseudo) {
+        $statusIcon = isset($message['status']) && $message['status'] == 'seen' ? '<img width="24" height="24" src="https://img.icons8.com/material-rounded/24/FFFFFF/double-tick.png" alt="double-tick"/>' : '<img width="24" height="24" src="https://img.icons8.com/ios/24/FFFFFF/checkmark--v1.png" alt="checkmark--v1" style=""/>';
+        echo "<span class='message-status'>$statusIcon</span>";
+    }
+    
+    echo "</div>";
 }
 
+$lastmsg = end($messages)['ID'];
+?>
 ?>
 <script>
         document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
-        </script>
+    
+    function userDash() {
+        
+    }
+</script>
