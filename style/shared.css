@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
+
 
 :root {
     --primary-dark-color-1: #10111A;
@@ -79,13 +81,13 @@ a:active {
     left:0;
 }
 
-#navbar a{
+#navbar a {
     font-size: 100%;
     text-decoration: none;
-    color: #db4d34;
-    font-size: 24px;
+    color: #fff;
+    font-size: 18px;
     transition: color 0.3s ease, transform 0.3s ease;
-    font-family: "Zeyada", cursive;
+    font-family: "Comic Relief", system-ui;
     font-weight: 400;
     font-style: normal;
 }
@@ -94,12 +96,16 @@ a:active {
     content: '';
     display: block;
     width: 0;
-    height: 2px;
-    background: #db4d34;
+    height: 100%;
+    background: #A688F9;
     transition: width 0.3s;
+    
+    opacity: 0.2;
+    
     position: absolute;
     left: 0;
     bottom: -5px;
+    z-index: 2;
 }
 
 
@@ -118,8 +124,7 @@ a:active {
     display: none;
 }
 #navbar a:hover {
-    color: #ccc12e;
-    transform: translateY(-5px);
+    transform: translateY(-1px);
 }
 #navbar a:hover::after {
     width: 100%;
